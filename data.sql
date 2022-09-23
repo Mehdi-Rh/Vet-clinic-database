@@ -31,3 +31,69 @@ VALUES ('Blossom', TO_DATE('10/13/1998', 'MM/DD/YYYY'), 17, TRUE, 3);
 INSERT INTO animals (name, date_of_birth, weight_kg, neutered, escape_attempts)
 VALUES ('Ditto', TO_DATE('05/14/2022', 'MM/DD/YYYY'), 22, TRUE, 4);
 
+/* Project_3 query multiple tables*/
+
+-- Insert data into the owners table
+INSERT INTO owners (full_name, age)
+VALUES ('Sam Smith', 34);
+INSERT INTO owners (full_name, age)
+VALUES ('Jennifer Orwell', 19);
+INSERT INTO owners (full_name, age)
+VALUES ('Bob', 45);
+INSERT INTO owners (full_name, age)
+VALUES ('Melody Pond', 77);
+INSERT INTO owners (full_name, age)
+VALUES ('Dean Winchester', 14);
+INSERT INTO owners (full_name, age)
+VALUES ('Jodie Whittaker', 38);
+
+-- Insert data into the species table
+INSERT INTO species (name)
+VALUES ('Pokemon');
+INSERT INTO species (name)
+VALUES ('Digimon');
+
+-- Modify the inserted animals so it includes the species_id value
+UPDATE animals 
+SET species_id = 2
+WHERE name LIKE '%mon';
+
+UPDATE animals 
+SET species_id = 1
+WHERE species_id IS NULL;
+
+-- Modify the inserted animals to include owner information (owner_id)
+UPDATE animals 
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name LIKE 'Sam Smith%'
+)
+WHERE name = 'Agumon';
+
+UPDATE animals 
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name = 'Jennifer Orwell'
+)
+WHERE name = 'Gabumon' OR name = 'Pikachu';
+
+UPDATE animals 
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name = 'Bob'
+)
+WHERE name = 'Devimon' OR name = 'Plantmon';
+
+UPDATE animals 
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name = 'Melody Pond'
+)
+WHERE name = 'Charmander' OR name = 'Squirtle'OR name = 'Blossom';
+
+UPDATE animals 
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name = 'Melody Pond'
+)
+WHERE name = 'Angemon' OR name = 'Boarmon';

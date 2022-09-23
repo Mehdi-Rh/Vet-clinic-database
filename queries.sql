@@ -98,7 +98,7 @@ SELECT * FROM animals;
 
 -- Write queries to answer the following questions:
 
--- *** For the below queries check querie_24.png & querie_24.png ***
+-- *** For the below queries check querie_26.png & querie_27.png ***
 
 -- How many animals are there?
 SELECT COUNT(*) FROM animals;

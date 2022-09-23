@@ -19,6 +19,13 @@ This repository includes files with plain SQL that can be used to recreate a dat
 - Use [data.sql](./data.sql) to populate tables with sample data.
 - Check [queries.sql](./queries.sql) for examples of queries that can be run on a newly created database. **Important note: this file might include queries that make changes in the database (e.g., remove records). Use them responsibly!**
 
+## Prerequiste
+
+Clone the repo: git clone git@github.com:Mehdi-Rh/Vet-clinic-database.git
+Install postgres if not already installed: you can follow this [tutorial](https://www.cherryservers.com/blog/how-to-install-and-setup-postgresql-server-on-ubuntu-20-04) 
+## Connect to the Database
+sudo -u postgres psql
+\c vet_clinic
 
 ## Authors
 
