@@ -58,3 +58,34 @@ ALTER TABLE animals
 ALTER TABLE animals 
 	ADD owner_id INT,
 	ADD CONSTRAINT fk_owners FOREIGN KEY(owner_id) REFERENCES owners(id);
+
+/* Project_4 add "join table" for visits */
+
+-- Create a table named vets
+CREATE TABLE vets (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(100),
+	age INT,
+	date_of_graduation DATE
+);
+
+-- Create a "join table" called specializations to handle the many-to-many relationship between the tables species and vets
+CREATE TABLE specializations (
+	species_id INT NOT NULL,
+	vet_id INT NOT NULL,
+	PRIMARY KEY(species_id, vet_id),
+	CONSTRAINT fk_specializations_species FOREIGN KEY(species_id) REFERENCES species(id),
+	CONSTRAINT fk_specializations_vet FOREIGN KEY(vet_id) REFERENCES vets(id)
+);
+
+-- Create a "join table" called visits to handle the many-to-many relationship between the tables animals and vets, it should also keep track of the date of the visit.
+CREATE TABLE visits (
+	animal_id INT NOT NULL,
+	vet_id INT NOT NULL,
+	date_of_visit DATE,
+	PRIMARY KEY(animal_id, vet_id, date_of_visit),
+	CONSTRAINT fk_visits_animals FOREIGN KEY(animal_id) REFERENCES animals(id),
+	CONSTRAINT fk_visits_vets FOREIGN KEY(vet_id) REFERENCES vets(id)
+);
+
+
